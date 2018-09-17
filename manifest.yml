@@ -1,0 +1,8 @@
+---
+applications:
+- name: phoenixborn-app
+  memory: 512M
+  instances: 1
+  buildpacks:
+  - https://github.com/HashNuke/heroku-buildpack-elixir.git
+  command: MIX_ENV=prod mix phx.server
