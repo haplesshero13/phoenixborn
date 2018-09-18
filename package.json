@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "elm-webpack-loader": "^5.0.0"
+    "elm": "0.18.0",
+    "elm-webpack-loader": "^4.5.0"
   }
 }

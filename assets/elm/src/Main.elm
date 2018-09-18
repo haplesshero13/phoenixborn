@@ -1,6 +1,5 @@
 module Main exposing (Model, Msg(..), init, main, update, view)
 
-import Browser
 import Html exposing (Html, div, h1, img, text)
 import Html.Attributes exposing (id, src)
 
@@ -47,11 +46,11 @@ view model =
 ---- PROGRAM ----
 
 
-main : Program () Model Msg
+main : Program Never Model Msg
 main =
-    Browser.element
+    Html.program
         { view = view
-        , init = \_ -> init
+        , init = init
         , update = update
         , subscriptions = always Sub.none
         }
