@@ -9,7 +9,7 @@ defmodule Phoenixborn.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      PhoenixbornWeb.Endpoint,
+      PhoenixbornWeb.Endpoint
       # Starts a worker by calling: Phoenixborn.Worker.start_link(arg)
       # {Phoenixborn.Worker, arg},
     ]
