@@ -1,4 +1,5 @@
-import { flow, types } from "mobx-state-tree"
+import { flow, getEnv, types } from "mobx-state-tree"
+import { ChatRoom } from "./ChatRoom"
 
 const headers = {
   "Accept": "application/json",
@@ -6,6 +7,7 @@ const headers = {
 }
 
 export const Cost = types.union(types.string, types.array(types.string))
+
 export const StringOrNumber = types.union(types.string, types.number)
 
 export const Images = types.model({
@@ -43,6 +45,7 @@ export const Card = types.model({
 export const Model = types
   .model({
     cards: types.array(Card),
+    lobby: types.optional(ChatRoom, {}),
   })
   .actions((self) => ({
     fetchCards: flow(function*() {

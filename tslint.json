@@ -1,8 +1,13 @@
 {
-  "extends": ["tslint:recommended", "tslint-react"],
+  "extends": ["tslint:latest", "tslint-react", "tslint-immutable"],
   "rules": {
     "semicolon": [true, "never"],
     "object-literal-sort-keys": false,
-    "jsx-no-multiline-js": false
+    "jsx-no-multiline-js": false,
+    "no-this": true,
+    "no-class": true,
+    "no-mixed-interface": true,
+    "no-unused-expression": false,
+    "no-implicit-dependencies": [true, "dev"]
   }
 }

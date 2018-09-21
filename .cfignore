@@ -3,3 +3,4 @@ elm-stuff/
 _build/
 deps/
 .elixir_ls/
+output

@@ -1,0 +1,14 @@
+{
+  "tests": "e2e/*.spec.ts",
+  "timeout": 10000,
+  "output": "./output",
+  "helpers": {
+    "Puppeteer": {
+      "url": "http://localhost:4000"
+    }
+  },
+  "include": {},
+  "bootstrap": false,
+  "mocha": {},
+  "name": "phoenixborn"
+}
