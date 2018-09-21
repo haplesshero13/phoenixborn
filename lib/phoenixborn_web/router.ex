@@ -16,6 +16,7 @@ defmodule PhoenixbornWeb.Router do
   scope "/", PhoenixbornWeb do
     pipe_through(:browser)
 
+    get("/api/cards", ApiController, :cards)
     get("/", PageController, :index)
   end
 

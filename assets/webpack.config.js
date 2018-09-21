@@ -11,7 +11,7 @@ module.exports = (env, options) => ({
       new OptimizeCSSAssetsPlugin({})
     ]
   },
-  entry: './js/app.js',
+  entry: './js/index.tsx',
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, '../priv/static/js')
@@ -30,19 +30,17 @@ module.exports = (env, options) => ({
         use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
-        test: /\.elm$/,
-        exclude: ["/elm-stuff/", "/node_modules"],
-        loader: "elm-webpack-loader",
-        options: {
-          debug: false,
-          warn: true,
-          cwd: path.resolve(__dirname, "elm")
-        }
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: ["ts-loader"]
       }
     ]
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),
     new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
-  ]
+  ],
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"]
+  }
 });
