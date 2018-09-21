@@ -16,12 +16,11 @@ defmodule PhoenixbornWeb.Router do
   scope "/", PhoenixbornWeb do
     pipe_through(:browser)
 
-    get("/api/cards", ApiController, :cards)
     get("/", PageController, :index)
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", PhoenixbornWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", PhoenixbornWeb do
+    pipe_through(:api)
+    get("/cards", ApiController, :cards)
+  end
 end
