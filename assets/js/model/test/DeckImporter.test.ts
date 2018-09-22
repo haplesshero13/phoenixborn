@@ -1,17 +1,35 @@
-import { expect } from "chai"
+import chai, { expect } from "chai"
 import "mocha"
-import { importer } from "../DeckImporter"
+import { importDeck } from "../DeckImporter"
+import { cardMap, jerichoDeck, jerichoString } from "./fixtures"
+
+chai.config.truncateThreshold = 0
 
 describe("DeckImporter", () => {
   describe("importer", () => {
-    it("uses the map of ID to name to generate a Deck", () => {
-      const cardMap = { 1: "Awesome Unit", 2: "Lame Card", 3: "Sweet Spell" }
-      const deckString = `2x Awesome Unit
+    it("uses card data to generate a Deck", () => {
+      const fakeCardMap = {
+        "Awesome Unit": "awesome-unit",
+        "Lame Card": "lame-card",
+        "Sweet Spell": "sweet-spell"
+      }
+      const deckString = `
+      Phoenixborn: Magick Personne
+      2x Awesome Unit (Special Card!)
       1x Sweet Spell
+      Ignore this line (123)
+      3x Illusion
       `
-      const deck = importer(cardMap)(deckString)
+      const deck = importDeck(fakeCardMap, deckString)
 
-      expect(deck).to.equal({ dice: [], 1: 2, 3: 1 })
+      expect(deck).to.deep.equal({
+        phoenixborn: "Magick Personne",
+        dice: { illusion: 3 },
+        cards: { "awesome-unit": 2, "sweet-spell": 1 }
+      })
+
+      const jerichoImport = importDeck(cardMap, jerichoString)
+      expect(jerichoImport).to.deep.equal(jerichoDeck)
     })
   })
 })

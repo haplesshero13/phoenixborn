@@ -1,8 +1,16 @@
 import allTheCards from "../../../../priv/cards.json"
+import { IStringMap } from "../DeckImporter"
 
 export { allTheCards }
 
-export const deck = `Jericho River Dance
+export const cardMap: IStringMap = Object.assign(
+  {},
+  ...allTheCards.cards.map(card => ({
+    [card.name]: card.stub
+  }))
+)
+
+export const jerichoString = `Jericho River Dance
 
 Phoenixborn: Jericho Kill
 
@@ -41,6 +49,30 @@ Conjuration Deck:
 5x Squall Stallion
 
 Created with https://ashes.live`
+
+export const jerichoDeck = {
+  phoenixborn: "Jericho Kill",
+  cards: {
+    "changing-winds": 1,
+    "chant-of-revenge": 3,
+    "summon-shadow-spirit": 3,
+    "summon-squall-stallion": 1,
+    anchornaut: 1,
+    "fire-archer": 3,
+    "river-skald": 2,
+    "blood-chains": 2,
+    "double-edge": 3,
+    "hand-tricks": 1,
+    "hidden-power": 3,
+    crescendo: 3,
+    "final-cry": 2,
+    "summon-sleeping-widows": 2,
+    "shadow-spirit": 4,
+    "sleeping-widow": 6,
+    "squall-stallion": 5
+  },
+  dice: { ceremonial: 3, illusion: 3, sympathy: 4 }
+}
 
 export const cards = [
   {
