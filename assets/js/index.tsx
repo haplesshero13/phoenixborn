@@ -20,9 +20,9 @@ const App = observer(({ model }: { model: IModel }) => (
   <div>
     <Lobby chatRoom={model.lobby} />
     <h1>Here are some cards!</h1>
-      {model.cards.map((card, i) => (
-          <div key={i}>{card.name}</div>
-      ))}
+    {model.cards.map((card, i) => (
+      <div key={i}>{card.name}</div>
+    ))}
   </div>
 ))
 

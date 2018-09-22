@@ -1,4 +1,4 @@
-Feature('Phoenixborn');
+Feature('Phoenixborn')
 
 Scenario('Ash and Raven use Phoenixborn', (I) => {
   I.amOnPage("/")

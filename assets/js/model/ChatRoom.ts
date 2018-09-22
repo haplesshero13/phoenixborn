@@ -8,17 +8,17 @@ interface IInputArgs {
 export const ChatRoom = types
   .model({
     messages: types.optional(types.array(types.string), []),
-    inputValue: "",
+    inputValue: ""
   })
-  .actions((self) => ({
+  .actions(self => ({
     handleNewMsg(payload: { body: string }) {
       self.messages.push(payload.body)
     },
     handleInputChange({ value }: IInputArgs) {
       self.inputValue = value
-    },
+    }
   }))
-  .actions((self) => {
+  .actions(self => {
     let lobby: Channel
 
     const afterCreate = () => {
@@ -37,7 +37,7 @@ export const ChatRoom = types
 
     return {
       afterCreate,
-      handleInputSubmit,
+      handleInputSubmit
     }
   })
 

@@ -10,9 +10,9 @@ chai.use(sinonChai)
 describe("ChatRoom", () => {
   let channel: sinon.SinonStub
   let lobby: {
-    on: sinon.SinonSpy;
-    push: sinon.SinonSpy;
-    join: sinon.SinonSpy;
+    on: sinon.SinonSpy
+    push: sinon.SinonSpy
+    join: sinon.SinonSpy
   }
   let socket: { channel: sinon.SinonStub }
 
@@ -28,10 +28,7 @@ describe("ChatRoom", () => {
     it("connects to the socket and joins the lobby", () => {
       const chatRoom = ChatRoom.create({}, { socket })
 
-      expect(lobby.on).to.have.been.calledWith(
-        "new_msg",
-        chatRoom.handleNewMsg,
-      )
+      expect(lobby.on).to.have.been.calledWith("new_msg", chatRoom.handleNewMsg)
       expect(lobby.join).to.have.been.calledOnce
     })
   })
@@ -43,7 +40,7 @@ describe("ChatRoom", () => {
       chatRoom.handleNewMsg({ body: "Hello there! Fancy a game?" })
 
       expect(getSnapshot(chatRoom.messages)).to.deep.equal([
-        "Hello there! Fancy a game?",
+        "Hello there! Fancy a game?"
       ])
     })
   })
@@ -55,7 +52,7 @@ describe("ChatRoom", () => {
       chatRoom.handleInputChange({ value: "Yes! I'm all fired up!" })
 
       expect(getSnapshot(chatRoom).inputValue).to.equal(
-        "Yes! I'm all fired up!",
+        "Yes! I'm all fired up!"
       )
     })
   })
@@ -64,9 +61,9 @@ describe("ChatRoom", () => {
     it("sends the message to the channel and clears the input", () => {
       const chatRoom = ChatRoom.create(
         {
-          inputValue: "I will start a game!",
+          inputValue: "I will start a game!"
         },
-        { socket },
+        { socket }
       )
       const preventDefault: VoidFunction = sinon.spy()
 
@@ -74,7 +71,7 @@ describe("ChatRoom", () => {
 
       expect(preventDefault).to.have.been.calledOnce
       expect(lobby.push).to.have.been.calledOnceWithExactly("new_msg", {
-        body: "I will start a game!",
+        body: "I will start a game!"
       })
       expect(chatRoom.inputValue).to.equal("")
     })
