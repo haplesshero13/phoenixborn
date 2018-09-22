@@ -41,4 +41,10 @@ defmodule PhoenixbornWeb.ErrorHelpers do
       Gettext.dgettext(PhoenixbornWeb.Gettext, "errors", msg, opts)
     end
   end
+
+  def changeset_error(changeset) do
+    %{
+      errors: Ecto.Changeset.traverse_errors(changeset, &translate_error/1)
+    }
+  end
 end

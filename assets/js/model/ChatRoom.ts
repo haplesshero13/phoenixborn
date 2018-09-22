@@ -6,9 +6,10 @@ interface IInputArgs {
 }
 
 export const ChatRoom = types
-  .model({
+  .model("ChatRoom", {
     messages: types.optional(types.array(types.string), []),
-    inputValue: ""
+    inputValue: "",
+    token: types.maybe(types.string),
   })
   .actions(self => ({
     handleNewMsg(payload: { body: string }) {
@@ -28,10 +29,13 @@ export const ChatRoom = types
         lobby.on("new_msg", self.handleNewMsg)
       }
     }
+
     const handleInputSubmit = (event: { preventDefault: VoidFunction }) => {
       event.preventDefault()
 
-      lobby.push("new_msg", { body: self.inputValue })
+      if (self.token) {
+        lobby.push("new_msg", { body: self.inputValue, token: self.token })
+      }
       self.inputValue = ""
     }
 

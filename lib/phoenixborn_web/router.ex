@@ -7,6 +7,7 @@ defmodule PhoenixbornWeb.Router do
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
+    plug(PhoenixbornWeb.Auth)
   end
 
   pipeline :api do
@@ -21,6 +22,9 @@ defmodule PhoenixbornWeb.Router do
 
   scope "/api", PhoenixbornWeb do
     pipe_through(:api)
+
+    post("/login", ApiController, :login)
     get("/cards", ApiController, :cards)
+    post("/users", ApiController, :create_user)
   end
 end

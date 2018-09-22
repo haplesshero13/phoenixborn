@@ -61,7 +61,8 @@ describe("ChatRoom", () => {
     it("sends the message to the channel and clears the input", () => {
       const chatRoom = ChatRoom.create(
         {
-          inputValue: "I will start a game!"
+          inputValue: "I will start a game!",
+          token: "that's the ticket"
         },
         { socket }
       )
@@ -71,7 +72,8 @@ describe("ChatRoom", () => {
 
       expect(preventDefault).to.have.been.calledOnce
       expect(lobby.push).to.have.been.calledOnceWithExactly("new_msg", {
-        body: "I will start a game!"
+        body: "I will start a game!",
+        token: "that's the ticket",
       })
       expect(chatRoom.inputValue).to.equal("")
     })

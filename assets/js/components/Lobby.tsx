@@ -1,21 +1,25 @@
-import { Label, TextField } from "gestalt"
+import { Box, Heading, Label, Text, TextField } from "gestalt"
 import { observer } from "mobx-react"
 import * as React from "react"
-import { IChatRoom } from "./model"
+import { IChatRoom } from "../model"
 
 export default observer(({ chatRoom }: { chatRoom: IChatRoom }) => (
-  <div>
-    <h3>Lobby Chat</h3>
+  <Box>
+    <Heading size="sm">Lobby Chat</Heading>
     {chatRoom.messages.map((msg, i) => (
-      <p key={i}>{msg}</p>
+      <Text key={i}>{msg}</Text>
     ))}
     <form onSubmit={chatRoom.handleInputSubmit}>
-      <Label htmlFor="lobby-chat-input">Message</Label>
+      <Box marginBottom={2} marginTop={2}>
+        <Label htmlFor="lobby-chat-input">
+          <Text>Message</Text>
+        </Label>
+      </Box>
       <TextField
         id="lobby-chat-input"
         onChange={chatRoom.handleInputChange}
         value={chatRoom.inputValue}
       />
     </form>
-  </div>
+  </Box>
 ))

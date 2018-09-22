@@ -5,11 +5,15 @@
     "node": "9.x || 10.x"
   },
   "scripts": {
-    "test": "npm-run-all test-mix test-js test-e2e",
-    "test-e2e": "codeceptjs run --steps",
-    "test-js": "mocha -r ts-node/register assets/js/**/*.test.ts assets/js/**/*.test.tsx",
-    "test-mix": "mix test",
-    "lint": "tslint -p tsconfig.json"
+    "test": "npm-run-all test:mix test:js test:e2e",
+    "test:e2e": "codeceptjs run --steps",
+    "test:js": "mocha -r ts-node/register assets/js/**/*.test.ts assets/js/**/*.test.tsx",
+    "test:mix": "mix test",
+    "lint": "tslint -p tsconfig.json",
+    "reset-db": "npm-run-all ecto:drop ecto:create ecto:migrate",
+    "ecto:drop": "mix ecto.drop",
+    "ecto:create": "mix ecto.create",
+    "ecto:migrate": "mix ecto.migrate"
   },
   "devDependencies": {
     "codeceptjs": "^1.4.1",

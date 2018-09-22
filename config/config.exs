@@ -5,6 +5,9 @@
 # is restricted to this project.
 use Mix.Config
 
+config :phoenixborn,
+  ecto_repos: [Phoenixborn.Repo]
+
 # Configures the endpoint
 config :phoenixborn, PhoenixbornWeb.Endpoint,
   url: [host: "localhost"],
@@ -19,6 +22,7 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+config :ecto, :json_library, Jason
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

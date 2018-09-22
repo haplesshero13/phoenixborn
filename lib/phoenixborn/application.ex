@@ -8,8 +8,9 @@ defmodule Phoenixborn.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Start the endpoint when the application starts
+      Phoenixborn.Repo,
       PhoenixbornWeb.Endpoint
+      # Start the endpoint when the application starts
       # Starts a worker by calling: Phoenixborn.Worker.start_link(arg)
       # {Phoenixborn.Worker, arg},
     ]

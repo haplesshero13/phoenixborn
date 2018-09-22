@@ -8,3 +8,11 @@ config :phoenixborn, PhoenixbornWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+# Configure your database
+config :phoenixborn, Phoenixborn.Repo,
+  username: "postgres",
+  password: "postgres",
+  database: "phoenixborn_test",
+  hostname: "localhost",
+  pool_size: 10

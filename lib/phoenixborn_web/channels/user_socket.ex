@@ -15,7 +15,7 @@ defmodule PhoenixbornWeb.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
-  def connect(_params, socket) do
+  def connect(_opts, socket) do
     {:ok, socket}
   end
 
