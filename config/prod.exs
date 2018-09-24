@@ -11,7 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :phoenixborn, PhoenixbornWeb.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [scheme: "https", host: "phoenixborn-app.cfapps.io", port: 443],
+  url: [scheme: "https", host: {:system, "HOST"}, port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json"
 

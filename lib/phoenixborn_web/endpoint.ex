@@ -2,8 +2,8 @@ defmodule PhoenixbornWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :phoenixborn
 
   socket("/socket", PhoenixbornWeb.UserSocket,
-    websocket: true,
-    longpoll: false
+    longpoll: true,
+    websocket: [timeout: 45_000]
   )
 
   # Serve at "/" the static files from "priv/static" directory.

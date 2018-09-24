@@ -1,6 +1,9 @@
 {
   "repository": {},
   "license": "MIT",
+  "engines": {
+    "node": "9.x || 10.x"
+  },
   "scripts": {
     "test": "npm-run-all test-mix test-js test-e2e",
     "test-e2e": "codeceptjs run --steps",
