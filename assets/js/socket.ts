@@ -54,8 +54,4 @@ const socket = new Socket("/socket", {})
 // Finally, connect to the socket:
 socket.connect()
 
-socket.channel("")
-
-// Now that you are connected, you can join channels with a topic:
-
 export default socket
