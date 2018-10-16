@@ -105,6 +105,7 @@
 "@types/react-modal@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@types/react-modal/-/react-modal-3.2.1.tgz#48578bb362fd8be732d4e5c57c137b7e1dfd273d"
+  integrity sha512-EhRC3xjsehC0e8OKz/NmEyjc/ggHxVj4rNu8p/AfSohbn5NHY0V58fj0OZgQPZzXY42v+rLxiO7PL1uOeBfimg==
   dependencies:
     "@types/react" "*"
 
@@ -2240,6 +2241,7 @@ execa@^0.7.0:
 exenv@^1.2.0:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+  integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
 
 exit-hook@^1.0.0:
   version "1.1.1"
@@ -4949,6 +4951,7 @@ react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.2:
 react-modal@^3.6.1:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.6.1.tgz#54d27a1ec2b493bbc451c7efaa3557b6af82332d"
+  integrity sha512-vAhnawahH1fz8A5x/X/1X20KHMe6Q0mkfU5BKPgKSVPYhMhsxtRbNHSitsoJ7/oP27xZo3naZZlwYuuzuSO1xw==
   dependencies:
     exenv "^1.2.0"
     prop-types "^15.5.10"
@@ -6093,6 +6096,7 @@ vm-browserify@0.0.4:
 warning@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
+  integrity sha1-MuU3fLVy3kqwR1O9+IIcAe1gW3w=
   dependencies:
     loose-envify "^1.0.0"
 
@@ -6234,10 +6238,6 @@ wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
-
-wretch@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/wretch/-/wretch-1.4.1.tgz#0423ae539a5279d17835f3995103d49c2906cd71"
 
 write-file-atomic@^1.2.0:
   version "1.3.4"

@@ -5,12 +5,13 @@
     "node": "9.x || 10.x"
   },
   "scripts": {
+    "start": "mix phx.server",
     "test": "npm-run-all test:mix test:js test:e2e",
     "test:e2e": "codeceptjs run --steps",
     "test:js": "mocha -r ts-node/register assets/js/**/*.test.ts assets/js/**/*.test.tsx",
     "test:mix": "mix test",
     "lint": "tslint -p tsconfig.json",
-    "reset-db": "npm-run-all ecto:drop ecto:create ecto:migrate",
+    "ecto:reset": "mix ecto.reset",
     "ecto:drop": "mix ecto.drop",
     "ecto:create": "mix ecto.create",
     "ecto:migrate": "mix ecto.migrate"
@@ -25,6 +26,6 @@
     "tslint-immutable": "^4.7.0",
     "tslint-react": "^3.6.0",
     "tslint-config-prettier": "^1.15.0",
-    "typescript": "^3.0.3"
+    "typescript": "^3.1.0"
   }
 }

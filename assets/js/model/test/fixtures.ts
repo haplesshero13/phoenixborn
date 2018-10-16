@@ -5,7 +5,7 @@ export { allTheCards }
 
 export const cardMap: IStringMap = Object.assign(
   {},
-  ...allTheCards.cards.map(card => ({
+  ...allTheCards.cards.map((card) => ({
     [card.name]: card.stub
   }))
 )

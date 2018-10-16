@@ -28,4 +28,33 @@ Scenario("Ash and Raven use Phoenixborn", I => {
   session("Raven", () => {
     I.waitForText("Ash: Hello, are you there?", 1)
   })
+
+  I.click("Import Deck")
+
+  I.fillField("Deck Name", "Jericho Widowmaker")
+  I.fillField("Decklist",
+    `Phoenixborn: Jericho Kill
+
+Dice:
+3x Ceremonial
+3x Illusion
+4x Sympathy
+
+Cards (30/30):
+
+Ready Spells (8):
+1x Changing Winds
+3x Chant of Revenge
+3x Summon Shadow Spirit
+1x Summon Squall Stallion`
+  )
+
+  I.click("Import")
+
+  within("#decks", () => {
+    I.see("Jericho Widowmaker (Jericho Kill)")
+    I.seeNumberOfVisibleElements(".ceremonial-die", 3)
+    I.seeNumberOfVisibleElements(".illusion-die", 3)
+    I.seeNumberOfVisibleElements(".sympathy-die", 4)
+  })
 })
