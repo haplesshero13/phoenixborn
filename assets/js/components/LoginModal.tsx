@@ -8,14 +8,14 @@ export default observer(({ model }: { model: IModel }) => (
     heading="Login"
     accessibilityCloseLabel="close"
     accessibilityModalLabel="Login"
-    onDismiss={model.handleCloseLoginModal}
+    onDismiss={model.closeLoginModal}
     size="md"
   >
     <Box padding={2}>
       <Box marginTop={2}>
         <TextField
           id="login-username"
-          onChange={model.handleUsernameChange}
+          onChange={model.onUsernameChange}
           value={model.username}
           placeholder="Username"
           name="Login Username"
@@ -24,7 +24,7 @@ export default observer(({ model }: { model: IModel }) => (
       <Box marginTop={2}>
         <TextField
           id="login-password"
-          onChange={model.handlePasswordChange}
+          onChange={model.onPasswordChange}
           value={model.password}
           type="password"
           placeholder="Password"
@@ -38,7 +38,7 @@ export default observer(({ model }: { model: IModel }) => (
         />
       </Box>
       <Box marginTop={2}>
-        <Button onClick={model.handleCloseLoginModal} text="Cancel" />
+        <Button onClick={model.closeLoginModal} text="Cancel" />
       </Box>
     </Box>
   </Modal>

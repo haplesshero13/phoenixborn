@@ -1,14 +1,7 @@
 import allTheCards from "../../../../priv/cards.json"
-import { IStringMap } from "../DeckImporter"
-
 export { allTheCards }
 
-export const cardMap: IStringMap = Object.assign(
-  {},
-  ...allTheCards.cards.map((card) => ({
-    [card.name]: card.stub
-  }))
-)
+export const cardList = allTheCards.cards.map((card) => (card.name))
 
 export const jerichoString = `Jericho River Dance
 
@@ -51,27 +44,31 @@ Conjuration Deck:
 Created with https://ashes.live`
 
 export const jerichoDeck = {
-  phoenixborn: "Jericho Kill",
-  cards: {
-    "changing-winds": 1,
-    "chant-of-revenge": 3,
-    "summon-shadow-spirit": 3,
-    "summon-squall-stallion": 1,
-    anchornaut: 1,
-    "fire-archer": 3,
-    "river-skald": 2,
-    "blood-chains": 2,
-    "double-edge": 3,
-    "hand-tricks": 1,
-    "hidden-power": 3,
-    crescendo: 3,
-    "final-cry": 2,
-    "summon-sleeping-widows": 2,
-    "shadow-spirit": 4,
-    "sleeping-widow": 6,
-    "squall-stallion": 5
-  },
-  dice: { ceremonial: 3, illusion: 3, sympathy: 4 }
+  phoenixborn: 'Jericho Kill',
+  cards: [
+    { name: 'Changing Winds', qty: 1 },
+    { name: 'Chant of Revenge', qty: 3 },
+    { name: 'Summon Shadow Spirit', qty: 3 },
+    { name: 'Summon Squall Stallion', qty: 1 },
+    { name: 'Anchornaut', qty: 1 },
+    { name: 'Fire Archer', qty: 3 },
+    { name: 'River Skald', qty: 2 },
+    { name: 'Blood Chains', qty: 2 },
+    { name: 'Double Edge', qty: 3 },
+    { name: 'Hand Tricks', qty: 1 },
+    { name: 'Hidden Power', qty: 3 },
+    { name: 'Crescendo', qty: 3 },
+    { name: 'Final Cry', qty: 2 },
+    { name: 'Summon Sleeping Widows', qty: 2 },
+    { name: 'Shadow Spirit', qty: 4 },
+    { name: 'Sleeping Widow', qty: 6 },
+    { name: 'Squall Stallion', qty: 5 },
+  ],
+  dice: [
+    { name: 'Ceremonial', qty: 3 },
+    { name: 'Illusion', qty: 3 },
+    { name: 'Sympathy', qty: 4 },
+  ]
 }
 
 export const cards = [

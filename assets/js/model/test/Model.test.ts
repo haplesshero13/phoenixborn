@@ -121,4 +121,25 @@ describe("Model", () => {
       })
     })
   })
+
+  describe('onDecklistChange', () => {
+    it('parses the value of the decklist input', () => {
+      const model = Model.create({
+        cards: [{ name: "Auto-Win" }]
+      })
+
+      model.onDecklistChange({
+        value: `Phoenixborn: LOL
+        3x Auto-Win`
+      })
+
+      expect(getSnapshot(model).parsedDeck).to.deep.equal(
+        {
+          phoenixborn: 'LOL',
+          cards: [{ qty: 3, name: 'Auto-Win' }],
+          dice: []
+        }
+      )
+    })
+  })
 })

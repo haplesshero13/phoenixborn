@@ -8,14 +8,14 @@ export default observer(({ model }: { model: IModel }) => (
     heading="Sign Up"
     accessibilityCloseLabel="close"
     accessibilityModalLabel="Sign Up"
-    onDismiss={model.handleCloseCreateAccountModal}
+    onDismiss={model.closeCreateAccountModal}
     size="md"
   >
     <Box padding={2}>
       <Box marginTop={2}>
         <TextField
           id="create-account-username"
-          onChange={model.handleUsernameChange}
+          onChange={model.onUsernameChange}
           value={model.username}
           errorMessage={model.usernameError}
           idealErrorDirection="down"
@@ -26,7 +26,7 @@ export default observer(({ model }: { model: IModel }) => (
       <Box marginTop={2}>
         <TextField
           id="create-account-password"
-          onChange={model.handlePasswordChange}
+          onChange={model.onPasswordChange}
           value={model.password}
           type="password"
           errorMessage={model.passwordError}
@@ -43,7 +43,7 @@ export default observer(({ model }: { model: IModel }) => (
         />
       </Box>
       <Box marginTop={2}>
-        <Button onClick={model.handleCloseCreateAccountModal} text="Cancel" />
+        <Button onClick={model.closeCreateAccountModal} text="Cancel" />
       </Box>
     </Box>
   </Modal>

@@ -1,6 +1,7 @@
-import { flow, types } from "mobx-state-tree"
+import { cast, flow, types } from "mobx-state-tree"
 import { get, post } from "../http"
 import { ChatRoom, IChatRoom } from "./ChatRoom"
+import { importDeck } from "./DeckImporter"
 
 export { ChatRoom, IChatRoom }
 
@@ -9,12 +10,12 @@ export const Cost = types.union(types.string, types.array(types.string))
 export const StringOrNumber = types.union(types.string, types.number)
 
 export const Images = types.model({
-  compressed: types.string,
-  full: types.string,
-  thumbnail: types.string,
+  compressed: "",
+  full: "",
+  thumbnail: "",
 })
 
-export const CardText = types.model({
+export const CardText = types.model("CardText", {
   cost: types.array(Cost),
   text: types.string,
   name: types.maybe(types.string),
@@ -22,23 +23,35 @@ export const CardText = types.model({
   betweenRealms: false,
 })
 
-export const Card = types.model({
-  id: types.number,
-  name: types.string,
+export const Card = types.model("Card", {
+  id: 0,
+  name: "",
   cost: types.maybe(types.array(Cost)),
-  images: Images,
+  images: types.optional(Images, {}),
   placement: types.maybe(types.string),
-  stub: types.string,
+  stub: "",
   text: types.array(CardText),
-  type: types.string,
+  type: "",
   attack: types.maybe(StringOrNumber),
   life: types.maybe(StringOrNumber),
   recover: types.maybe(StringOrNumber),
   phoenixborn: types.maybe(types.string),
-  conjurations: types.optional(types.array(types.string), []),
+  conjurations: types.maybe(types.array(types.string)),
   battlefield: types.maybe(StringOrNumber),
   spellboard: types.maybe(StringOrNumber),
 })
+
+export const NamedQuantity = types.model({
+  qty: 0,
+  name: "",
+})
+
+export const Deck = types
+  .model("Deck", {
+    phoenixborn: "",
+    cards: types.array(NamedQuantity),
+    dice: types.array(NamedQuantity)
+  })
 
 export const Model = types
   .model("Model", {
@@ -46,8 +59,11 @@ export const Model = types
     lobby: types.optional(ChatRoom, {}),
     showCreateAccountModal: false,
     showLoginModal: false,
+    showImportModal: false,
     username: "",
     password: "",
+    decklist: "",
+    parsedDeck: types.maybe(Deck),
     token: types.maybe(types.string),
   })
   .views(self => ({
@@ -61,14 +77,17 @@ export const Model = types
         ? undefined
         : "Password must be between 8 and 100 characters"
     },
+    get cardList() {
+      return self.cards.map((card) => (card.name))
+    }
   }))
   .actions(self => ({
-    fetchCards: flow(function*() {
+    fetchCards: flow(function* () {
       const response = yield get("/api/cards")
 
       self.cards = response.cards
     }),
-    createAccount: flow(function*() {
+    createAccount: flow(function* () {
       const { token } = yield post("/api/users", {
         user: {
           username: self.username,
@@ -83,7 +102,7 @@ export const Model = types
       self.password = ""
     }),
 
-    login: flow(function*() {
+    login: flow(function* () {
       const { token } = yield post("/api/login", {
         username: self.username,
         password: self.password,
@@ -96,23 +115,33 @@ export const Model = types
       self.password = ""
     }),
 
-    handleCloseCreateAccountModal() {
+    closeCreateAccountModal() {
       self.showCreateAccountModal = false
     },
-    handleOpenCreateAccountModal() {
+    openCreateAccountModal() {
       self.showCreateAccountModal = true
     },
-    handleCloseLoginModal() {
+    closeLoginModal() {
       self.showLoginModal = false
     },
-    handleOpenLoginModal() {
+    openLoginModal() {
       self.showLoginModal = true
     },
-    handleUsernameChange({ value }: { value: string }) {
+    closeImportModal() {
+      self.showImportModal = false
+    },
+    openImportModal() {
+      self.showImportModal = true
+    },
+    onUsernameChange({ value }: { value: string }) {
       self.username = value
     },
-    handlePasswordChange({ value }: { value: string }) {
+    onPasswordChange({ value }: { value: string }) {
       self.password = value
+    },
+    onDecklistChange({ value }: { value: string }) {
+      self.decklist = value
+      self.parsedDeck = cast<typeof Deck.Type>(importDeck(self.cardList, self.decklist))
     },
   }))
 

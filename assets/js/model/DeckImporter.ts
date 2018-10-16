@@ -1,41 +1,32 @@
-export interface IStringMap {
-  [key: string]: string
-}
 
-export interface IDeck {
-  phoenixborn: string
-  cards: {
-    [key: string]: number
-  }
-  dice: {
-    [key: string]: number
-  }
-}
+export const diceList = [
+  "Illusion",
+  "Sympathy",
+  "Ceremonial",
+  "Nature",
+  "Divine",
+  "Charm",
+]
 
-export const diceMap = {
-  Illusion: "illusion",
-  Sympathy: "sympathy",
-  Ceremonial: "ceremonial",
-  Nature: "nature",
-  Divine: "divine",
-  Charm: "charm"
-}
-
-const nameToStub = (map: IStringMap) => (line: string) => {
-  const quantity = parseInt(line.split(/x(.+)/)[0], 10)
-  const cardName = line
+const namedQuantity = (list: string[]) => (line: string) => {
+  const qty = parseInt(line.split(/x(.+)/)[0], 10)
+  const name = line
     .split(/x(.+)/)[1]
     .replace(/ *\([^)]*\) */g, "")
     .trim()
 
-  return !!map[cardName] ? { [map[cardName]]: quantity } : {}
+  return !!list.includes(name) ? { name, qty } : undefined
 }
 
-const parseWithMap = (map: IStringMap, deck: string) =>
+const parseWithList = (list: string[], deck: string) =>
   deck
     .split("\n")
     .filter(str => str.match(/\dx/))
-    .map(nameToStub(map))
+    .map(namedQuantity(list))
+    .filter(it => it !== undefined) as Array<{
+      name: string
+      qty: number
+    }>
 
 const parsePhoenixBorn = (deck: string) =>
   deck
@@ -45,10 +36,10 @@ const parsePhoenixBorn = (deck: string) =>
     .split("Phoenixborn: ")
     .filter(s => s)[0]
 
-export const importDeck = (cardMap: IStringMap, deck: string): IDeck => {
+export const importDeck = (cardList: string[], deck: string) => {
   return {
     phoenixborn: parsePhoenixBorn(deck),
-    cards: Object.assign({}, ...parseWithMap(cardMap, deck)),
-    dice: Object.assign({}, ...parseWithMap(diceMap, deck))
+    cards: parseWithList(cardList, deck),
+    dice: parseWithList(diceList, deck)
   }
 }
