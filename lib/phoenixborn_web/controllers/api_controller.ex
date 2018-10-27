@@ -1,5 +1,6 @@
 alias Phoenixborn.Accounts
 alias PhoenixbornWeb.ErrorHelpers
+alias PhoenixbornWeb.Auth
 
 defmodule PhoenixbornWeb.ApiController do
   use PhoenixbornWeb, :controller
@@ -17,6 +18,7 @@ defmodule PhoenixbornWeb.ApiController do
     case Accounts.authenticate_by_username_and_pass(username, pass) do
       {:ok, user} ->
         conn
+        |> Auth.login(user)
         |> json(%{
           token: Phoenix.Token.sign(conn, "the price of salt", user.id)
         })
