@@ -12,6 +12,8 @@ defmodule PhoenixbornWeb.Router do
 
   pipeline :api do
     plug(:accepts, ["json"])
+    plug(:fetch_session)
+    plug(PhoenixbornWeb.Auth)
   end
 
   scope "/", PhoenixbornWeb do

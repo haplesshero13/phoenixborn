@@ -26,7 +26,7 @@ defmodule PhoenixbornWeb.ApiController do
       {:error, _reason} ->
         conn
         |> put_status(:forbidden)
-        |> json(%{})
+        |> text("Forbidden")
     end
   end
 
@@ -42,5 +42,21 @@ defmodule PhoenixbornWeb.ApiController do
         |> put_status(:bad_request)
         |> json(ErrorHelpers.changeset_error(changeset))
     end
+  end
+
+  defp authenticate(conn, _opts) do
+    if conn.assigns.current_user do
+      conn
+    else
+      conn
+      |> put_status(:forbidden)
+      |> text("Forbidden")
+      |> halt
+    end
+  end
+
+  plug(:authenticate when action in [:create_decklist])
+
+  def create_decklist(conn, %{"decklist" => decklist}) do
   end
 end

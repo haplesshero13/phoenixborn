@@ -2,7 +2,7 @@
   "repository": {},
   "license": "MIT",
   "engines": {
-    "node": "9.x || 10.x"
+    "node": "9.x || 10.x || 11.x"
   },
   "scripts": {
     "start": "mix phx.server",

@@ -2,10 +2,11 @@
 
 To start your Phoenix server:
 
-- Install Elixir, Node.js, and yarn
+- Install Elixir, Node.js, yarn, postgresql, inotify-tools
 - Install dependencies with `mix deps.get`
-- Install Node.js dependencies with `cd assets && yarn install`
-- Start Phoenix endpoint with `mix phx.server`
+- Install Node.js dependencies with `yarn install && cd assets && yarn install`
+- Initialize the database with `mix ecto.setup`
+- Start Phoenix endpoint with `mix phx.server` or `yarn start`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
